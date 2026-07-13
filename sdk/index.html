@@ -68,7 +68,7 @@
 
     .summary {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 12px;
       margin-bottom: 44px;
     }
@@ -166,6 +166,7 @@
 
     <section class="summary" aria-label="清单摘要">
       <div class="summary-card"><span class="label">涉及个人信息处理的第三方 SDK</span><strong class="value">0</strong><span class="detail">截至当前版本依赖审计，未发现此类第三方 SDK</span></div>
+      <div class="summary-card"><span class="label">第三方页面托管服务</span><strong class="value">1</strong><span class="detail">GitHub Pages，仅用于合规页面访问</span></div>
       <div class="summary-card"><span class="label">运行平台</span><strong class="value">iOS 15.2+</strong><span class="detail">主 App、Widget、Watch App</span></div>
       <div class="summary-card"><span class="label">适用版本</span><strong class="value">1.0</strong><span class="detail">构建版本 1 · 更新/生效：2026年7月13日</span></div>
     </section>
@@ -181,7 +182,17 @@
             <tr><th style="width:12%">SDK / 服务名称</th><th style="width:12%">提供方</th><th style="width:12%">使用目的</th><th style="width:13%">使用场景</th><th style="width:15%">涉及的个人信息</th><th style="width:12%">处理方式</th><th style="width:8%">系统权限</th><th style="width:6%">适用平台</th><th style="width:10%">第三方隐私政策</th></tr>
           </thead>
           <tbody>
-            <tr class="empty-row"><td colspan="9"><strong>当前未发现涉及个人信息处理的第三方 SDK 或第三方信息共享服务</strong>截至本页面对应版本的依赖审计，Sprout 未发现第三方广告、统计分析、崩溃分析、支付聚合、地图、社交登录或其他会处理个人信息的第三方 SDK。未来如发生接入，将按实际情况补充逐项披露。</td></tr>
+            <tr>
+              <td>GitHub Pages（页面托管服务，非 SDK）</td>
+              <td data-label="提供方">GitHub, Inc. / Microsoft</td>
+              <td data-label="使用目的">托管并提供隐私政策、儿童个人信息保护规则、用户协议及 SDK 清单</td>
+              <td data-label="使用场景">用户在 App 内主动打开合规页面，或通过浏览器访问相关网址时</td>
+              <td data-label="涉及的个人信息">IP 地址、浏览器/设备类型、请求时间、访问页面等常规网络访问日志；不向 GitHub 主动提交宝宝照护记录</td>
+              <td data-label="处理方式">网络传输、页面响应及为安全运维所需的日志处理；具体以 GitHub 实际规则为准</td>
+              <td data-label="系统权限">无</td>
+              <td data-label="适用平台">iOS / Web</td>
+              <td data-label="第三方隐私政策"><a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener noreferrer">GitHub 隐私声明</a></td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -193,16 +204,17 @@
         <p>以下内容不属于第三方 SDK 列表</p>
       </div>
       <div class="system-list">
-        <article class="system-item"><h3>CloudKit <span class="badge">系统服务</span></h3><p>用于用户 iCloud 账户下的数据同步及家庭协同；数据处理受 Apple 服务条款和用户账户设置约束。</p></article>
-        <article class="system-item"><h3>StoreKit <span class="badge">系统框架</span></h3><p>用于 Sprout Pro 的 App Store 购买、交易校验和权益同步；不接入 RevenueCat 等订阅聚合 SDK。</p></article>
-        <article class="system-item"><h3>UserNotifications <span class="badge">系统框架</span></h3><p>用于例行计划提醒等本地通知；通知权限由用户在系统设置中管理。</p></article>
+        <article class="system-item"><h3>CloudKit <span class="badge">系统服务</span></h3><p>用于用户 iCloud 账户下的数据同步及家庭协同；数据处理受 Apple 服务条款、<a href="https://www.apple.com/legal/privacy/" rel="noopener noreferrer">Apple 隐私政策</a>和用户账户设置约束。</p></article>
+        <article class="system-item"><h3>StoreKit <span class="badge">系统框架</span></h3><p>用于 Sprout Pro 的 App Store 购买、交易校验和权益同步；不接入 RevenueCat 等订阅聚合 SDK。付款凭证由 Apple 处理。</p></article>
+        <article class="system-item"><h3>UserNotifications <span class="badge">系统框架</span></h3><p>用于例行计划等本地通知；通知权限由用户在系统设置中管理。</p></article>
+        <article class="system-item"><h3>WidgetKit / ActivityKit / WatchConnectivity <span class="badge">系统框架</span></h3><p>用于 Widget、Live Activity 和 Apple Watch 的摘要与控制，数据通过 Apple 系统容器及设备连接传递。</p></article>
       </div>
     </section>
 
     <footer class="footnote">
-      <p>运营者：华晓龙<br>联系邮箱：请以 App Store 公布的开发者联系渠道为准<br>隐私政策：正式发布前补充</p>
+      <p>运营者：华晓龙<br>联系渠道：请以 App Store 公布的“App 支持”或开发者联系渠道为准<br>隐私政策：<a href="../privacy/index.html">查看《Sprout 隐私政策》</a></p>
       <p>更新日期：2026年7月13日　生效日期：2026年7月13日</p>
-      <p>说明：本页面披露的是当前版本已审查的 SDK 与第三方服务情况，不代表未来版本永久不接入第三方服务。若未来接入，将在正式发布前补充名称、提供方、使用目的、使用场景、涉及信息、处理方式、权限、适用平台及隐私政策链接。</p>
+      <p>说明：本页面披露的是当前版本已审查的 SDK 与第三方服务情况，不代表未来版本永久不接入其他第三方服务。若未来接入，将在正式发布前补充名称、提供方、使用目的、使用场景、涉及信息、处理方式、权限、适用平台及隐私政策链接。</p>
     </footer>
   </main>
 </body>
