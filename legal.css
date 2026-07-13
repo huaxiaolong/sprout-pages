@@ -76,6 +76,8 @@ p { margin: 10px 0; }
   margin: 28px 0 0;
 }
 
+.meta.meta-four { grid-template-columns: repeat(4, 1fr); }
+
 .meta-card {
   padding: 16px;
   border: 1px solid var(--border);
@@ -86,6 +88,8 @@ p { margin: 10px 0; }
 
 .meta-card span { display: block; color: var(--subtle); font-size: 12px; }
 .meta-card strong { display: block; margin-top: 3px; font-size: 15px; }
+.meta-card .value { font-size: 24px; }
+.meta-card .detail { margin-top: 3px; color: var(--muted); font-size: 12px; }
 
 .toc {
   margin: 30px 0 0;
@@ -111,6 +115,17 @@ p { margin: 10px 0; }
 .section ul, .section ol { padding-left: 22px; }
 .section li + li { margin-top: 8px; }
 
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.section-heading h2 { margin-bottom: 0; }
+.section-heading p { margin: 0; color: var(--subtle); font-size: 13px; }
+
 .callout {
   margin: 18px 0;
   padding: 14px 16px;
@@ -119,11 +134,61 @@ p { margin: 10px 0; }
   background: var(--accent-soft);
 }
 
-.table-wrap { overflow-x: auto; margin: 16px 0; border: 1px solid var(--border); border-radius: 14px; }
+.table-wrap {
+  overflow-x: auto;
+  margin: 16px 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
 table { width: 100%; min-width: 720px; border-collapse: collapse; font-size: 14px; }
 th, td { padding: 12px 14px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
 th { background: var(--surface-muted); font-weight: 700; }
 tr:last-child td { border-bottom: 0; }
+
+.sdk-table table { min-width: 980px; table-layout: fixed; }
+.sdk-table th, .sdk-table td { border-right: 1px solid var(--border); overflow-wrap: anywhere; }
+.sdk-table th:last-child, .sdk-table td:last-child { border-right: 0; }
+.sdk-table td { color: var(--muted); font-size: 13px; }
+.sdk-table td:first-child { color: var(--text); font-weight: 700; }
+.sdk-table th:nth-child(1) { width: 12%; }
+.sdk-table th:nth-child(2) { width: 12%; }
+.sdk-table th:nth-child(3) { width: 12%; }
+.sdk-table th:nth-child(4) { width: 13%; }
+.sdk-table th:nth-child(5) { width: 15%; }
+.sdk-table th:nth-child(6) { width: 12%; }
+.sdk-table th:nth-child(7) { width: 8%; }
+.sdk-table th:nth-child(8) { width: 6%; }
+.sdk-table th:nth-child(9) { width: 10%; }
+
+.system-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.system-item {
+  padding: 17px 18px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface-muted);
+}
+
+.system-item h3 { margin: 0 0 4px; font-size: 15px; }
+.system-item p { margin: 0; color: var(--muted); font-size: 13px; }
+
+.badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 7px;
+  border-radius: 99px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  vertical-align: 2px;
+}
 
 .legal-nav {
   display: flex;
@@ -165,9 +230,37 @@ tr:last-child td { border-bottom: 0; }
 @media (max-width: 680px) {
   .notice { padding: 9px 14px; text-align: left; }
   .page { width: min(100% - 28px, 920px); padding: 38px 0 52px; }
-  .meta { grid-template-columns: 1fr; }
+  .meta, .meta.meta-four, .system-list { grid-template-columns: 1fr; }
   .toc ol { columns: 1; }
   .section { padding: 22px 18px; border-radius: 15px; }
+  .section-heading { display: block; }
+  .section-heading p { margin-top: 5px; }
+  .sdk-table { overflow: visible; border: 0; background: transparent; box-shadow: none; }
+  .sdk-table table,
+  .sdk-table thead,
+  .sdk-table tbody,
+  .sdk-table tr,
+  .sdk-table th,
+  .sdk-table td { display: block; min-width: 0; }
+  .sdk-table table { width: 100%; }
+  .sdk-table thead { display: none; }
+  .sdk-table tr {
+    margin-bottom: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+  }
+  .sdk-table td {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 12px;
+    padding: 11px 14px;
+    border-right: 0;
+  }
+  .sdk-table td::before { content: attr(data-label); color: var(--subtle); font-size: 12px; }
+  .sdk-table td:first-child { display: block; padding: 15px 14px 10px; background: var(--surface-muted); font-size: 15px; }
+  .sdk-table td:first-child::before { display: none; }
   h2 { font-size: 21px; }
 }
 
