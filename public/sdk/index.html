@@ -4,23 +4,23 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="format-detection" content="telephone=no">
-  <meta name="description" content="Sprout 第三方信息共享及 SDK 清单，披露当前版本使用的第三方服务与 Apple 系统能力。">
-  <title>第三方信息共享及 SDK 清单｜Sprout</title>
+  <meta name="description" content="宝食记第三方信息共享及 SDK 清单，披露当前版本使用的第三方服务与 Apple 系统能力。">
+  <title>第三方信息共享及 SDK 清单｜宝食记</title>
   <link rel="stylesheet" href="../legal.css">
 </head>
 <body>
-  <div class="notice"><strong>提示：</strong>本清单适用于 Sprout 当前公开发布版本。不同版本、系统版本或功能配置下的实际接入情况可能有所不同。</div>
+  <div class="notice"><strong>提示：</strong>本清单适用于宝食记当前公开发布版本。不同版本、系统版本或功能配置下的实际接入情况可能有所不同。</div>
 
   <main class="page">
-    <p class="eyebrow">SPROUT · PRIVACY TRANSPARENCY</p>
+    <p class="eyebrow">宝食记 · PRIVACY TRANSPARENCY</p>
     <h1>第三方信息共享及 SDK 清单</h1>
-    <p class="intro">为保障 Sprout 的记录、同步、订阅和跨设备能力，我们会根据实际功能需要使用系统框架或第三方软件开发包（SDK）。本清单以对应 App 版本的实际集成和运行情况为准；如接入第三方 SDK 或服务，我们将根据其实际处理行为进行审核和披露，并提供相关服务方的隐私政策链接供用户查阅。</p>
+    <p class="intro">为保障宝食记的记录、同步、订阅和跨设备能力，我们会根据实际功能需要使用系统框架或第三方软件开发包（SDK）。本清单以对应 App 版本的实际集成和运行情况为准；如接入第三方 SDK 或服务，我们将根据其实际处理行为进行审核和披露，并提供相关服务方的隐私政策链接供用户查阅。</p>
 
     <section class="meta meta-four" aria-label="清单摘要">
-      <div class="meta-card"><span class="label">涉及个人信息处理的第三方 SDK</span><strong class="value">0</strong><span class="detail">截至当前版本依赖审计，未发现此类第三方 SDK</span></div>
+      <div class="meta-card"><span class="label">涉及个人信息处理的第三方 SDK</span><strong class="value">1</strong><span class="detail">阿里云移动监控，仅用于崩溃与性能诊断</span></div>
       <div class="meta-card"><span class="label">第三方页面托管服务</span><strong class="value">1</strong><span class="detail">GitHub Pages，仅用于合规与支持页面访问</span></div>
       <div class="meta-card"><span class="label">运行平台</span><strong class="value">iOS 15.2+</strong><span class="detail">主 App、Widget、Watch App</span></div>
-      <div class="meta-card"><span class="label">适用版本</span><strong class="value">1.0</strong><span class="detail">构建版本 1 · 更新/生效：2026年7月13日</span></div>
+      <div class="meta-card"><span class="label">适用版本</span><strong class="value">1.0</strong><span class="detail">构建版本 1 · 更新/生效：2026年8月2日</span></div>
     </section>
 
     <section class="section" aria-labelledby="third-party-title">
@@ -34,6 +34,17 @@
             <tr><th>SDK / 服务名称</th><th>提供方</th><th>使用目的</th><th>使用场景</th><th>涉及的个人信息</th><th>处理方式</th><th>系统权限</th><th>适用平台</th><th>第三方隐私政策</th></tr>
           </thead>
           <tbody>
+            <tr>
+              <td>移动监控 SDK</td>
+              <td data-label="提供方">杭州阿里云智能科技有限公司</td>
+              <td data-label="使用目的">崩溃分析、启动/页面/网络性能分析及远程诊断日志</td>
+              <td data-label="使用场景">监护人在首次启动或“数据与隐私”中单独允许诊断后，App 启动并运行时</td>
+              <td data-label="涉及的个人信息">网络类型、操作系统版本、CPU 架构、设备型号、屏幕分辨率、语言、运营商信息、崩溃堆栈和性能日志；宝食记不向 SDK 主动传递宝宝档案或照护记录</td>
+              <td data-label="处理方式">由 SDK 加密/网络传输至阿里云移动监控服务，用于故障定位和性能分析；本 App 不设置 userId 或自定义宝宝数据日志</td>
+              <td data-label="系统权限">无额外系统权限；需要联网</td>
+              <td data-label="适用平台">iOS 15.2+ 主 App</td>
+              <td data-label="第三方隐私政策"><a href="https://terms.aliyun.com/legal-agreement/terms/suit_bu1_ali_cloud/suit_bu1_ali_cloud202112071754_83380.html" rel="noopener noreferrer">EMAS 隐私权政策</a></td>
+            </tr>
             <tr>
               <td>GitHub Pages（页面托管服务，非 SDK）</td>
               <td data-label="提供方">GitHub, Inc. / Microsoft</td>
@@ -57,7 +68,7 @@
       </div>
       <div class="system-list">
         <article class="system-item"><h3>CloudKit <span class="badge">系统服务</span></h3><p>用于用户 iCloud 账户下的数据同步及家庭协同；数据处理受 Apple 服务条款、<a href="https://www.apple.com/legal/privacy/" rel="noopener noreferrer">Apple 隐私政策</a>和用户账户设置约束。</p></article>
-        <article class="system-item"><h3>StoreKit <span class="badge">系统框架</span></h3><p>用于 Sprout Pro 的 App Store 购买、交易校验和权益同步；不接入 RevenueCat 等订阅聚合 SDK。付款凭证由 Apple 处理。</p></article>
+        <article class="system-item"><h3>StoreKit <span class="badge">系统框架</span></h3><p>用于宝食记 Pro 的 App Store 购买、交易校验和权益同步；不接入 RevenueCat 等订阅聚合 SDK。付款凭证由 Apple 处理。</p></article>
         <article class="system-item"><h3>UserNotifications <span class="badge">系统框架</span></h3><p>用于例行计划等本地通知；通知权限由用户在系统设置中管理。</p></article>
         <article class="system-item"><h3>WidgetKit / ActivityKit / WatchConnectivity <span class="badge">系统框架</span></h3><p>用于 Widget、Live Activity 和 Apple Watch 的摘要与控制，数据通过 Apple 系统容器及设备连接传递。</p></article>
       </div>
@@ -70,8 +81,8 @@
     </nav>
 
     <footer class="footnote">
-      <p>运营者：Sprout 运营者<br>联系渠道：请以 App Store 公布的“App 支持”或开发者联系渠道为准<br>隐私政策：<a href="../privacy/index.html">查看《Sprout 隐私政策》</a></p>
-      <p>更新日期：2026年7月13日　生效日期：2026年7月13日</p>
+      <p>运营者：宝食记运营者<br>联系渠道：请以 App Store 公布的“App 支持”或开发者联系渠道为准<br>隐私政策：<a href="../privacy/index.html">查看《宝食记隐私政策》</a></p>
+      <p>更新日期：2026年8月2日　生效日期：2026年8月2日</p>
       <p>说明：本页面披露的是当前版本已审查的 SDK 与第三方服务情况，不代表未来版本永久不接入其他第三方服务。若未来接入，将在正式发布前补充名称、提供方、使用目的、使用场景、涉及信息、处理方式、权限、适用平台及隐私政策链接。</p>
     </footer>
   </main>
