@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7fbf8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="description" content="安装宝食记，继续处理家庭协同邀请。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="宝食记｜家庭协同邀请">
+  <meta property="og:description" content="安装宝食记后，回到原消息再次点击邀请链接。">
+  <title>宝食记｜家庭协同邀请</title>
+  <link rel="icon" href="assets/app-icon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/app-icon.png">
+  <link rel="stylesheet" href="homepage.css">
+  <style>
+    :root {
+      --invite-surface: rgba(255, 255, 255, .72);
+      --invite-surface-strong: rgba(255, 255, 255, .9);
+      --invite-number: #dff3e7;
+    }
+
+    .invite-page {
+      min-height: 100svh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .invite-header,
+    .invite-main,
+    .invite-footer {
+      width: min(920px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .invite-header {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .invite-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+      font-size: 20px;
+      font-weight: 760;
+      letter-spacing: -.04em;
+    }
+
+    .invite-brand img {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      box-shadow: 0 6px 18px rgba(31, 171, 111, .18);
+    }
+
+    .invite-home-link {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .invite-home-link:hover,
+    .invite-home-link:focus-visible {
+      color: var(--green);
+    }
+
+    .invite-main {
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      padding: 54px 0 68px;
+      text-align: center;
+    }
+
+    .invite-mark {
+      width: 92px;
+      height: 92px;
+      margin-bottom: 27px;
+      padding: 7px;
+      border: 1px solid rgba(255, 255, 255, .86);
+      border-radius: 28px;
+      background: var(--invite-surface);
+      box-shadow: 0 18px 42px rgba(34, 79, 53, .12);
+      transform: rotate(-3deg);
+    }
+
+    .invite-mark img {
+      width: 100%;
+      height: 100%;
+      border-radius: 22px;
+    }
+
+    .invite-eyebrow {
+      margin: 0 0 13px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 760;
+      letter-spacing: .1em;
+    }
+
+    .invite-title {
+      max-width: 650px;
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(36px, 6vw, 60px);
+      font-weight: 780;
+      line-height: 1.12;
+      letter-spacing: -.065em;
+    }
+
+    .invite-description {
+      max-width: 520px;
+      margin: 20px auto 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .invite-action-area {
+      min-height: 56px;
+      margin-top: 28px;
+      display: grid;
+      justify-items: center;
+      align-items: center;
+    }
+
+    .invite-button {
+      min-width: 178px;
+      min-height: 52px;
+      padding: 13px 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 14px 30px rgba(24, 122, 84, .2);
+      color: #fff;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 760;
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .invite-button:hover,
+    .invite-button:focus-visible {
+      background: #126846;
+      box-shadow: 0 17px 34px rgba(24, 122, 84, .26);
+      transform: translateY(-1px);
+    }
+
+    .invite-button:focus-visible,
+    .invite-home-link:focus-visible,
+    .invite-footer a:focus-visible {
+      outline: 3px solid rgba(35, 180, 119, .32);
+      outline-offset: 4px;
+    }
+
+    .invite-button.is-disabled,
+    .invite-button.is-disabled:hover {
+      background: #98aaa0;
+      box-shadow: none;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .invite-action-note {
+      margin: 11px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .invite-steps {
+      width: min(720px, 100%);
+      margin: 52px 0 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      list-style: none;
+      text-align: left;
+    }
+
+    .invite-step {
+      padding: 0 24px;
+    }
+
+    .invite-step:first-child { padding-left: 0; }
+    .invite-step:last-child { padding-right: 0; }
+
+    .invite-step + .invite-step {
+      border-left: 1px solid var(--line);
+    }
+
+    .invite-step-number {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--invite-number);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .invite-step-title {
+      margin: 13px 0 5px;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 760;
+    }
+
+    .invite-step-description {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .invite-privacy-note {
+      max-width: 460px;
+      margin: 30px auto 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .invite-state[hidden] { display: none; }
+    .invite-button[hidden] { display: none; }
+
+    .invite-footer {
+      min-height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--line);
+      color: #88948d;
+      font-size: 10px;
+    }
+
+    .invite-footer nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 18px;
+    }
+
+    .invite-footer a:hover,
+    .invite-footer a:focus-visible {
+      color: var(--green);
+    }
+
+    @media (max-width: 640px) {
+      .invite-header,
+      .invite-main,
+      .invite-footer {
+        width: min(100% - 30px, 520px);
+      }
+
+      .invite-header { min-height: 68px; }
+
+      .invite-brand { font-size: 19px; }
+
+      .invite-brand img {
+        width: 36px;
+        height: 36px;
+      }
+
+      .invite-main { padding: 40px 0 48px; }
+
+      .invite-title { font-size: clamp(36px, 11vw, 48px); }
+
+      .invite-description {
+        margin-top: 16px;
+        font-size: 15px;
+        line-height: 1.75;
+      }
+
+      .invite-steps {
+        margin-top: 42px;
+        display: block;
+      }
+
+      .invite-step,
+      .invite-step:first-child,
+      .invite-step:last-child {
+        padding: 17px 0;
+      }
+
+      .invite-step:first-child { padding-top: 0; }
+      .invite-step:last-child { padding-bottom: 0; }
+
+      .invite-step + .invite-step {
+        border-top: 1px solid var(--line);
+        border-left: 0;
+      }
+
+      .invite-footer {
+        min-height: 78px;
+        padding: 17px 0;
+        flex-direction: column;
+        justify-content: center;
+        gap: 9px;
+      }
+
+      .invite-footer nav {
+        justify-content: center;
+        gap: 8px 15px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .invite-button { transition: none; }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --invite-surface: rgba(31, 43, 36, .82);
+        --invite-surface-strong: rgba(31, 43, 36, .94);
+        --invite-number: rgba(121, 216, 170, .16);
+      }
+
+      .invite-mark { border-color: rgba(70, 91, 78, .8); }
+      .invite-button { color: #102218; }
+      .invite-button.is-disabled,
+      .invite-button.is-disabled:hover { color: #d8e2dc; }
+    }
+  </style>
+</head>
+<body>
+  <div class="invite-page">
+    <header class="invite-header">
+      <a class="invite-brand" href="/" aria-label="宝食记首页">
+        <img src="assets/app-icon.png" alt="" width="38" height="38">
+        <span>宝食记</span>
+      </a>
+      <a class="invite-home-link" href="/">返回首页</a>
+    </header>
+
+    <main class="invite-main" id="main">
+      <div class="invite-mark" aria-hidden="true">
+        <img src="assets/app-icon.png" alt="">
+      </div>
+      <p class="invite-eyebrow">家庭协同邀请</p>
+
+      <section class="invite-state" data-state="valid" aria-live="polite">
+        <h1 class="invite-title">收到一份家庭协同邀请</h1>
+        <p class="invite-description">安装宝食记后，回到发送邀请的消息，再次点击原邀请链接，就可以继续处理这份邀请。</p>
+
+        <div class="invite-action-area">
+          <a id="app-store-link" class="invite-button" href="#" hidden>下载宝食记</a>
+          <button id="app-store-placeholder" class="invite-button is-disabled" type="button" disabled>App Store 上线后可下载</button>
+          <p id="app-store-note" class="invite-action-note">安装完成后，请回到原消息再次点击邀请链接。</p>
+        </div>
+
+        <ol class="invite-steps" aria-label="处理邀请步骤">
+          <li class="invite-step">
+            <span class="invite-step-number" aria-hidden="true">1</span>
+            <h2 class="invite-step-title">安装宝食记</h2>
+            <p class="invite-step-description">从 App Store 下载并打开宝食记。</p>
+          </li>
+          <li class="invite-step">
+            <span class="invite-step-number" aria-hidden="true">2</span>
+            <h2 class="invite-step-title">回到原消息</h2>
+            <p class="invite-step-description">回到发送邀请的消息、邮件或分享页面。</p>
+          </li>
+          <li class="invite-step">
+            <span class="invite-step-number" aria-hidden="true">3</span>
+            <h2 class="invite-step-title">再次点击邀请</h2>
+            <p class="invite-step-description">在宝食记中确认是否加入家庭协同。</p>
+          </li>
+        </ol>
+
+        <p class="invite-privacy-note">邀请确认会在宝食记 App 内完成，网页不会读取宝宝资料或直接加入家庭协同。</p>
+      </section>
+
+      <section class="invite-state" data-state="invalid" aria-live="polite" hidden>
+        <h1 class="invite-title">邀请链接无效</h1>
+        <p class="invite-description">请回到原来的消息或邮件，重新点击发送方提供的邀请链接。</p>
+        <div class="invite-action-area">
+          <a class="invite-button" href="/">返回宝食记首页</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="invite-footer">
+      <span>© 2026 宝食记</span>
+      <nav aria-label="规则与支持">
+        <a href="privacy/">隐私政策</a>
+        <a href="children-privacy/">儿童隐私</a>
+        <a href="terms/">用户协议</a>
+        <a href="support/">支持</a>
+      </nav>
+    </footer>
+  </div>
+
+  <script>
+    (() => {
+      // App Store 上线后，只需要替换这一处地址，不要把 share 参数拼进商店链接。
+      const appStoreURL = "";
+      const hasShareParameter = Boolean(new URLSearchParams(window.location.search).get("share"));
+      const validState = document.querySelector('[data-state="valid"]');
+      const invalidState = document.querySelector('[data-state="invalid"]');
+      const appStoreLink = document.getElementById("app-store-link");
+      const appStorePlaceholder = document.getElementById("app-store-placeholder");
+
+      validState.hidden = !hasShareParameter;
+      invalidState.hidden = hasShareParameter;
+
+      if (appStoreURL) {
+        appStoreLink.href = appStoreURL;
+        appStoreLink.hidden = false;
+        appStorePlaceholder.hidden = true;
+      }
+    })();
+  </script>
+</body>
+</html>
