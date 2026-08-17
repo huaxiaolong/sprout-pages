@@ -1,0 +1,16 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "9G7M4J8437.com.edwards.sprout"
+        ],
+        "components": [
+          {
+            "/": "/invite.html"
+          }
+        ]
+      }
+    ]
+  }
+}
